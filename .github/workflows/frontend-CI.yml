@@ -71,7 +71,7 @@ jobs:
       working-directory: starter/frontend
 
     - name: Build Docker image
-      run: docker build -t trungnq72-frontend-app:ci-build --build-arg=BACKEND_API=http://localhost:8081 starter/frontend
+      run: docker build -t trungnq72-frontend-app:ci-build starter/frontend
 
     - name: Run Docker container
       run: docker run -d --name trungnq72-frontend-container -p 8082:8082 trungnq72-frontend-app:ci-build
