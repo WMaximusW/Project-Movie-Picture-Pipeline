@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { url_movies } from "../route";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { url_movies } from '../route';
 
 export default function MovieList({ onMovieClick }) {
   const [movies, setMovies] = useState(null);
@@ -16,11 +16,7 @@ export default function MovieList({ onMovieClick }) {
       <ul>
         {movies != null ? (
           movies.map((item) => {
-            <li
-              className="movieItem"
-              key={item.id}
-              onClick={() => onMovieClick(item.id)}
-            >
+            <li className="movieItem" key={item.id} onClick={() => onMovieClick(item.id)}>
               <a href="javascript:void(0)">
                 {item.title} - <span>{item.description}</span>
               </a>

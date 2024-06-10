@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { url_movies } from "../route";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { url_movies } from '../route';
 
 export default function MovieDetail({ movieId }) {
   const [detail, setDetail] = useState(null);
