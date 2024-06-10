@@ -24,7 +24,7 @@ describe('On click Detail', () => {
 
     // Wait for the movie details to be loaded
     expect(screen.getByText('Movie 1')).toBeInTheDocument();
-      expect(screen.getByText('Description 1')).toBeInTheDocument();
+    expect(screen.getByText('Description 1')).toBeInTheDocument();
   });
 
   it('Data is empty', async () => {

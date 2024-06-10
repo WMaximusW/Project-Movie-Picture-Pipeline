@@ -2,7 +2,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect'; // for better assertions
-import App from './App';
+import App from '../../App';
 
 // Mock the MovieList and MovieDetails components
 jest.mock('../MovieList.js', () => ({ onMovieClick }) => (

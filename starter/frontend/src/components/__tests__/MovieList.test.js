@@ -20,7 +20,7 @@ describe('Initial', () => {
 
     // Wait for the movies to be loaded
     expect(screen.getByText('Movie 1 - Description 1')).toBeInTheDocument();
-      expect(screen.getByText('Movie 2 - Description 2')).toBeInTheDocument();
+    expect(screen.getByText('Movie 2 - Description 2')).toBeInTheDocument();
   });
 
   it('Call Api and return null', async () => {
@@ -35,7 +35,7 @@ describe('Initial', () => {
 
     // Wait for the movies to be loaded
     expect(screen.queryByText('Movie 1 - Description 1')).toBeNull();
-      expect(screen.queryByText('Movie 2 - Description 2')).toBeNull();
+    expect(screen.queryByText('Movie 2 - Description 2')).toBeNull();
   });
 
   it('On Event onMovieClick when a movie is clicked, return data', async () => {
