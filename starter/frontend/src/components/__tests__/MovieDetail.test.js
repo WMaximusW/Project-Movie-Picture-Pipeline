@@ -18,27 +18,23 @@ describe('On click Detail', () => {
       },
     };
 
-    axios.get.mockResolvedValue({ data: mockMovieData });
+    axios.get.mockResolvedValueOnce({ data: mockMovieData });
 
     render(<MovieDetail movieId={mockMovieId} />);
 
     // Wait for the movie details to be loaded
-    await waitFor(() => {
-      expect(screen.getByText('Movie 1')).toBeInTheDocument();
+    expect(screen.getByText('Movie 1')).toBeInTheDocument();
       expect(screen.getByText('Description 1')).toBeInTheDocument();
-    });
   });
 
   it('Data is empty', async () => {
     const mockMovieId = 1;
 
-    axios.get.mockResolvedValue({ data: null });
+    axios.get.mockResolvedValueOnce({ data: null });
 
     render(<MovieDetail movieId={mockMovieId} />);
 
     // Wait for the movie details to be loaded
-    await waitFor(() => {
-      expect(screen.getByText('Data not found')).toBeInTheDocument();
-    });
+    expect(screen.getByText('Data not found')).toBeInTheDocument();
   });
 });
