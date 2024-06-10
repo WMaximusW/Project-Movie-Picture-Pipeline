@@ -1,9 +1,10 @@
 name: Backend CI
 
 on:
+  workflow_dispatch:
   pull_request:
     branches:
       - main
     paths:
       - 'starter/backend/**'
-  workflow_dispatch:
+  
