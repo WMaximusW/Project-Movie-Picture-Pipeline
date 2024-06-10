@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitFor, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect'; // for better assertions
 import axios from 'axios';
 import MovieDetail from '../MovieDetail';
@@ -23,8 +23,8 @@ describe('On click Detail', () => {
     render(<MovieDetail movieId={mockMovieId} />);
 
     // Wait for the movie details to be loaded
-    expect(screen.getByText('Movie 1')).toBeInTheDocument();
-    expect(screen.getByText('Description 1')).toBeInTheDocument();
+    expect(screen.findByText('Movie 1')).toBeInTheDocument();
+    expect(screen.findByText('Description 1')).toBeInTheDocument();
   });
 
   it('Data is empty', async () => {
@@ -35,6 +35,6 @@ describe('On click Detail', () => {
     render(<MovieDetail movieId={mockMovieId} />);
 
     // Wait for the movie details to be loaded
-    expect(screen.getByText('Data not found')).toBeInTheDocument();
+    expect(screen.findByText('Data not found')).toBeInTheDocument();
   });
 });

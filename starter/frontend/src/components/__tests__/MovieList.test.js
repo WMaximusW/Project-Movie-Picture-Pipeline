@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor, screen } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect'; // for better assertions
 import axios from 'axios';
 import MovieList from '../MovieList';
@@ -19,23 +19,23 @@ describe('Initial', () => {
     render(<MovieList onMovieClick={jest.fn()} />);
 
     // Wait for the movies to be loaded
-    expect(screen.getByText('Movie 1 - Description 1')).toBeInTheDocument();
-    expect(screen.getByText('Movie 2 - Description 2')).toBeInTheDocument();
+    expect(screen.findByText('Movie 1 - Description 1')).toBeInTheDocument();
+    expect(screen.findByText('Movie 2 - Description 2')).toBeInTheDocument();
   });
 
   it('Call Api and return null', async () => {
     axios.get.mockResolvedValueOnce({ data: { movies: null } });
 
     // Wait for the movies to be loaded
-    expect(screen.getByText('Empty List')).toBeInTheDocument();
+    expect(screen.findByText('Empty List')).toBeInTheDocument();
   });
 
   it('Call Api and return empty array', async () => {
     axios.get.mockResolvedValueOnce({ data: { movies: null } });
 
     // Wait for the movies to be loaded
-    expect(screen.queryByText('Movie 1 - Description 1')).toBeNull();
-    expect(screen.queryByText('Movie 2 - Description 2')).toBeNull();
+    expect(screen.findByText('Movie 1 - Description 1')).toBeNull();
+    expect(screen.findByText('Movie 2 - Description 2')).toBeNull();
   });
 
   it('On Event onMovieClick when a movie is clicked, return data', async () => {
@@ -44,7 +44,7 @@ describe('Initial', () => {
     render(<MovieList onMovieClick={mockOnMovieClick} />);
 
     // Wait for the movies to be loaded
-    fireEvent.click(screen.getByText('Movie 1 - Description 1'));
+    fireEvent.click(screen.findByText('Movie 1 - Description 1'));
 
     // Check if onMovieClick is called with correct argument
     expect(mockOnMovieClick).toHaveBeenCalledWith(1);
@@ -56,7 +56,7 @@ describe('Initial', () => {
     render(<MovieList onMovieClick={mockOnMovieClick} />);
 
     // Wait for the movies to be loaded
-    fireEvent.click(screen.getByText('Empty List'));
+    fireEvent.click(screen.findByText('Empty List'));
 
     // Check if onMovieClick is called with correct argument
     expect(mockOnMovieClick).not.toHaveBeenCalled();

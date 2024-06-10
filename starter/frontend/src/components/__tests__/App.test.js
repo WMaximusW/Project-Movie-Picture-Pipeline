@@ -20,10 +20,10 @@ jest.mock('../MovieDetail.js', () => ({ movie }) => (
 describe('App component', () => {
   it('renders Movie List without selected movie details', () => {
     // Render the App component
-    const { getByText, queryByTestId } = render(<App />);
+    const { findByText, queryByTestId } = render(<App />);
 
     // Assert that Movie List is rendered
-    expect(getByText('Movie List')).toBeInTheDocument();
+    expect(findByText('Movie List')).toBeInTheDocument();
 
     // Assert that Movie Details is not rendered initially
     expect(queryByTestId('movie-details')).toBeNull();
@@ -31,12 +31,12 @@ describe('App component', () => {
 
   it('renders Movie Details when a movie is clicked', () => {
     // Render the App component
-    const { getByTestId, getByText } = render(<App />);
+    const { getByTestId, findByText } = render(<App />);
 
     // Click on a movie in the Movie List
     fireEvent.click(getByTestId('movie-list'));
 
     // Assert that Movie Details is rendered with the selected movie
-    expect(getByText('Movie Details: Test Movie')).toBeInTheDocument();
+    expect(findByText('Movie Details: Test Movie')).toBeInTheDocument();
   });
 });
