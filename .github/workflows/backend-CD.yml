@@ -1,9 +1,9 @@
 name: Backend CD
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
     paths:
       - 'starter/backend/**'
-  workflow_dispatch:
