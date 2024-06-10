@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect'; // for better assertions
 import axios from 'axios';
-import MovieList from './MovieList';
+import MovieList from '../MovieList';
 
 // Mock axios.get to return a promise with mocked data
 jest.mock('axios');
