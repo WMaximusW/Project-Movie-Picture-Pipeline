@@ -16,9 +16,7 @@ jest.mock('../MovieList.js', () => {
 });
 
 jest.mock('../MovieDetail.js', () => {
-  const MockMovieDetail = ({ movie }) => (
-    <div data-testid="movie-details">Movie Details: {movie.title}</div>
-  );
+  const MockMovieDetail = ({ movie }) => (<div data-testid="movie-details">Movie Details: {movie.title}</div>);
   MockMovieDetail.displayName = 'MockMovieDetail';
   return MockMovieDetail;
 });
