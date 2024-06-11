@@ -2,19 +2,19 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function MovieList({ onMovieClick }) {
-  const [movies, setMovies] = useState(null);
+  const [responseData, setMovies] = useState(null);
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_MOVIE_API_URL}/movies`).then((response) => {
-      setMovies(response.data.movies);
+      setMovies(response.data);
     });
   }, null);
 
   return (
     <>
       <ul>
-        {movies != null ? (
-          movies.map((item) => {
+        {responseData != null ? (
+          responseData.movies.map((item) => {
             <li className="movieItem" key={item.id} onClick={() => onMovieClick(item.id)}>
               <a href="javascript:void(0)">
                 {item.title} - <span>{item.description}</span>
