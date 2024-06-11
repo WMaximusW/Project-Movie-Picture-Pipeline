@@ -53,17 +53,5 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: "3.10"
-
-      - name: Install dependencies
-        run: pip install -r starter/backend/requirements.txt
-
-      - name: Package backend
-        run: python setup.py sdist bdist_wheel
-        working-directory: starter/backend
-
       - name: Build Docker image
         run: docker build -t trungnq72-backend-app:ci-build starter/backend
