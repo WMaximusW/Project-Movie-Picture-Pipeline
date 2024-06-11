@@ -26,8 +26,8 @@ describe('Initial', () => {
     });
 
     await waitFor(async () => {
-      expect(await screen.getByText(/Movie 1 - Description 1/)).toBeInTheDocument();
-      expect(await screen.getByText(/Movie 2 - Description 2/)).toBeInTheDocument();
+      expect(await screen.getByText('Movie 1')).toBeInTheDocument();
+      expect(await screen.getByText('Movie 2')).toBeInTheDocument();
     });
   });
 
@@ -51,7 +51,7 @@ describe('Initial', () => {
     });
 
     await waitFor(async () => {
-      const movie1 = await screen.getByText(/Movie 1 - Description 1/);
+      const movie1 = await screen.getByText('Movie 1');
       expect(movie1).toBeInTheDocument();
       fireEvent.click(movie1);
     });
