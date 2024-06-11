@@ -4,9 +4,6 @@ import '@testing-library/jest-dom/extend-expect'; // for better assertions
 import axios from 'axios';
 import MovieDetail from '../MovieDetail';
 
-// Mock axios.get to return a promise with mocked data
-
-
 describe('On click Detail', () => {
   it('Get data of the movie, return data', async () => {
     const mockMovieId = 1;
@@ -18,12 +15,10 @@ describe('On click Detail', () => {
       },
     };
 
-    jest.mock("axios", () => {
+    jest.mock('axios', () => {
       const expectedResponse = JSON.stringify(mockMovieData);
       return () => new Promise((resolve) => resolve(expectedResponse));
-    })
-
-    axios.get.mockResolvedValueOnce({ data: mockMovieData });
+    });
 
     render(<MovieDetail movieId={mockMovieId} />);
 
@@ -35,11 +30,10 @@ describe('On click Detail', () => {
   it('Data is empty', async () => {
     const mockMovieId = 1;
 
-    jest.mock("axios", () => {
+    jest.mock('axios', () => {
       const expectedResponse = JSON.stringify(null);
       return () => new Promise((resolve) => resolve(expectedResponse));
-    })
-    axios.get.mockResolvedValueOnce({ data: null });
+    });
 
     render(<MovieDetail movieId={mockMovieId} />);
 
