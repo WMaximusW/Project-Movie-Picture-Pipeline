@@ -1,0 +1,36 @@
+name: Frontend CD
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "starter/frontend/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: starter/frontend
+
+      - name: Run tests
+        run: npm test
+        working-directory: starter/frontend
+
+      - name: Build Docker image
+        run: |
+          docker build -t trungnq72-frontend-app:${{ github.sha }} starter/frontend
+        env:
+          DOCKER_BUILDKIT: 1
+
+      - name: Tag Docker image with git sha
+        run: |
+          docker tag trungnq72-frontend-app:${{ github.sha }} trungnq72-frontend-app:latest
+        env:
+          DOCKER_BUILDKIT: 1
