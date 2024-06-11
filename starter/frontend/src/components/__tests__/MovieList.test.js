@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, screen, waitFor } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect'; // for better assertions
 import axios from 'axios';
 import MovieList from '../MovieList';
@@ -19,17 +19,17 @@ describe('Initial', () => {
     render(<MovieList onMovieClick={jest.fn()} />);
     
     // Wait for the movie details to be loaded
-    expect(await screen.findByText('Movie 1 - Description 1')).toBeInTheDocument();
-    expect(await screen.findByText('Movie 2 - Description 2')).toBeInTheDocument();
+    expect(await screen.getByText('Movie 1 - Description 1')).toBeInTheDocument();
+    expect(await screen.getByText('Movie 2 - Description 2')).toBeInTheDocument();
   });
 
   it('Call Api and return null', async () => {
     axios.get.mockImplementation(() => Promise.resolve({ data: { movies: null } }));
-    
+
     render(<MovieList onMovieClick={jest.fn()} />);
 
     // Wait for the movies to be loaded
-    expect(await screen.findByText('Empty List')).toBeInTheDocument();
+    expect(await screen.getByText('Empty List')).toBeInTheDocument();
   });
 
   it('On Event onMovieClick when a movie is clicked, return data', async () => {
@@ -40,7 +40,7 @@ describe('Initial', () => {
     render(<MovieList onMovieClick={mockOnMovieClick} />);
 
     // Wait for the movies to be loaded
-    fireEvent.click(await screen.findByText('Movie 1 - Description 1'));
+    fireEvent.click(await screen.getByText('Movie 1 - Description 1'));
 
     // Check if onMovieClick is called with correct argument
     expect(mockOnMovieClick).toHaveBeenCalledWith(1);
