@@ -5,7 +5,7 @@ import axios from 'axios';
 import MovieDetail from '../MovieDetail';
 
 // Mock axios.get to return a promise with mocked data
-jest.mock('axios');
+
 
 describe('On click Detail', () => {
   it('Get data of the movie, return data', async () => {
@@ -17,6 +17,11 @@ describe('On click Detail', () => {
         description: 'Description 1',
       },
     };
+
+    jest.mock("axios", () => {
+      const expectedResponse = JSON.stringify(mockMovieData);
+      return () => new Promise((resolve) => resolve(expectedResponse));
+    })
 
     axios.get.mockResolvedValueOnce({ data: mockMovieData });
 
@@ -30,6 +35,10 @@ describe('On click Detail', () => {
   it('Data is empty', async () => {
     const mockMovieId = 1;
 
+    jest.mock("axios", () => {
+      const expectedResponse = JSON.stringify(null);
+      return () => new Promise((resolve) => resolve(expectedResponse));
+    })
     axios.get.mockResolvedValueOnce({ data: null });
 
     render(<MovieDetail movieId={mockMovieId} />);
