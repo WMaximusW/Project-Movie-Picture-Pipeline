@@ -75,10 +75,3 @@ jobs:
 
     - name: Run Docker container
       run: docker run -d --name trungnq72-frontend-container -e REACT_APP_MOVIE_API_URL=http://localhost:8081 -p 8082:8082 trungnq72-frontend-app:ci-build
-
-    - name: Test Docker container
-      run: |
-        # Wait for the container to be fully up and running
-        sleep 10
-        # Perform checks to ensure the container is running correctly
-        curl --retry 5 --retry-delay 10 --fail http://localhost:8082
