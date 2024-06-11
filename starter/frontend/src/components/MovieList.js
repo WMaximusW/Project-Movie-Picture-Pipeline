@@ -16,10 +16,7 @@ export default function MovieList({ onMovieClick }) {
         {responseData != null ? (
           responseData.movies.map((item) => {
             <li className="movieItem" key={item.id} onClick={() => onMovieClick(item.id)}>
-              <a href="javascript:void(0)">
-                {item.title}
-              </a>
-              - <span>{item.description}</span>
+              <a href="javascript:void(0)">{item.title}</a> - <span>{item.description}</span>
             </li>;
           })
         ) : (
