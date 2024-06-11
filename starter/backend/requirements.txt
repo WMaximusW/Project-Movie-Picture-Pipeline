@@ -2,3 +2,4 @@ pipenv
 flake8
 pytest
 flask
+flask_cors
