@@ -25,9 +25,9 @@ describe('Initial', () => {
       render(<MovieList />);
     });
 
-    await waitFor(async () => {
-      expect(await screen.getByText('Movie 1')).toBeInTheDocument();
-      expect(await screen.getByText('Movie 2')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('Movie 1')).toBeInTheDocument();
+      expect(screen.getByText('Movie 2')).toBeInTheDocument();
     });
   });
 
@@ -50,8 +50,8 @@ describe('Initial', () => {
       render(<MovieList onMovieClick={mockOnMovieClick} />);
     });
 
-    await waitFor(async () => {
-      const movie1 = await screen.getByText('Movie 1');
+    await waitFor(() => {
+      const movie1 = screen.getByText('Movie 1');
       expect(movie1).toBeInTheDocument();
       fireEvent.click(movie1);
     });
