@@ -7,17 +7,17 @@ import MovieList from '../MovieList';
 // Mock axios.get to return a promise with mocked data
 jest.mock('axios');
 
-const mockMovieData = {
-  data: {
-    movies: [
-      { id: 1, title: 'Movie 1', description: 'Description 1' },
-      { id: 2, title: 'Movie 2', description: 'Description 2' },
-    ],
-  },
-};
-
 describe('Initial', () => {
   it('Call Api and return data', async () => {
+    const mockMovieData = {
+      data: {
+        movies: [
+          { id: 1, title: 'Movie 1', description: 'Description 1' },
+          { id: 2, title: 'Movie 2', description: 'Description 2' },
+        ],
+      },
+    };
+
     // Mock the axios response
     axios.get.mockImplementation(() => Promise.resolve(mockMovieData));
 
@@ -25,13 +25,22 @@ describe('Initial', () => {
       render(<MovieList />);
     });
 
-    await waitFor(async() => {
+    await waitFor(async () => {
       expect(await screen.getByText(/Movie 1 - Description 1/)).toBeInTheDocument();
       expect(await screen.getByText(/Movie 2 - Description 2/)).toBeInTheDocument();
     });
   });
 
   it('On Event onMovieClick when a movie is clicked, return data', async () => {
+    const mockMovieData = {
+      data: {
+        movies: [
+          { id: 1, title: 'Movie 1', description: 'Description 1' },
+          { id: 2, title: 'Movie 2', description: 'Description 2' },
+        ],
+      },
+    };
+
     const mockOnMovieClick = jest.fn();
 
     // Mock the axios response
