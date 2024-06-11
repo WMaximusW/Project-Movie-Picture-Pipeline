@@ -19,10 +19,8 @@ describe('Initial', () => {
     render(<MovieList onMovieClick={jest.fn()} />);
     
     // Wait for the movie details to be loaded
-    await waitFor(() => {
-      expect(screen.findByText('Movie 1 - Description 1')).toBeInTheDocument();
-      expect(screen.findByText('Movie 2 - Description 2')).toBeInTheDocument();
-    });
+    expect(await screen.findByText('Movie 1 - Description 1')).toBeInTheDocument();
+    expect(await screen.findByText('Movie 2 - Description 2')).toBeInTheDocument();
   });
 
   it('Call Api and return null', async () => {
@@ -38,11 +36,11 @@ describe('Initial', () => {
     axios.get.mockImplementation(() => Promise.resolve({ data: { movies: movies } }));
 
     const mockOnMovieClick = jest.fn();
-    
+
     render(<MovieList onMovieClick={mockOnMovieClick} />);
 
     // Wait for the movies to be loaded
-    fireEvent.click(screen.findByText('Movie 1 - Description 1'));
+    fireEvent.click(await screen.findByText('Movie 1 - Description 1'));
 
     // Check if onMovieClick is called with correct argument
     expect(mockOnMovieClick).toHaveBeenCalledWith(1);
