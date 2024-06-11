@@ -4,17 +4,7 @@ import '@testing-library/jest-dom/extend-expect'; // for better assertions
 import axios from 'axios';
 import MovieDetail from '../MovieDetail';
 
-jest.mock('axios', () => {
-  const mockMovieData = {
-    movie: {
-      id: 1,
-      title: 'Movie 1',
-      description: 'Description 1',
-    },
-  };
-  const expectedResponse = JSON.stringify(mockMovieData);
-  return () => new Promise((resolve) => resolve(expectedResponse));
-});
+jest.mock('axios');
 
 describe('On click Detail', () => {
   it('Get data of the movie, return data', async () => {
@@ -26,9 +16,10 @@ describe('On click Detail', () => {
         description: 'Description 1',
       },
     };
-    render(<MovieDetail movieId={mockMovieId} />);
 
-    axios.get.mockResolvedValueOnce({ data: mockMovieData });
+    axios.get.mockImplementation(() => Promise.resolve(mockMovieData));
+
+    render(<MovieDetail movieId={mockMovieId} />);
 
     // Wait for the movie details to be loaded
     expect(await screen.findByText('Movie 1')).toBeInTheDocument();
