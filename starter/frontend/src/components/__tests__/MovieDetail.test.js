@@ -23,8 +23,8 @@ describe('On click Detail', () => {
     render(<MovieDetail movieId={mockMovieId} />);
 
     // Wait for the movie details to be loaded
-    expect(screen.findByText('Movie 1')).toBeInTheDocument();
-    expect(screen.findByText('Description 1')).toBeInTheDocument();
+    expect(await screen.findByText('Movie 1')).toBeInTheDocument();
+    expect(await screen.findByText('Description 1')).toBeInTheDocument();
   });
 
   it('Data is empty', async () => {
@@ -35,6 +35,6 @@ describe('On click Detail', () => {
     render(<MovieDetail movieId={mockMovieId} />);
 
     // Wait for the movie details to be loaded
-    expect(screen.findByText('Data not found')).toBeInTheDocument();
+    expect(await screen.findByText('Data not found')).toBeInTheDocument();
   });
 });

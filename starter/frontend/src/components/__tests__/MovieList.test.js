@@ -19,23 +19,23 @@ describe('Initial', () => {
     render(<MovieList onMovieClick={jest.fn()} />);
 
     // Wait for the movies to be loaded
-    expect(screen.findByText('Movie 1 - Description 1')).toBeInTheDocument();
-    expect(screen.findByText('Movie 2 - Description 2')).toBeInTheDocument();
+    expect(await screen.findByText('Movie 1 - Description 1')).toBeInTheDocument();
+    expect(await screen.findByText('Movie 2 - Description 2')).toBeInTheDocument();
   });
 
   it('Call Api and return null', async () => {
     axios.get.mockResolvedValueOnce({ data: { movies: null } });
 
     // Wait for the movies to be loaded
-    expect(screen.findByText('Empty List')).toBeInTheDocument();
+    expect(await screen.findByText('Empty List')).toBeInTheDocument();
   });
 
   it('Call Api and return empty array', async () => {
     axios.get.mockResolvedValueOnce({ data: { movies: null } });
 
     // Wait for the movies to be loaded
-    expect(screen.findByText('Movie 1 - Description 1')).toBeNull();
-    expect(screen.findByText('Movie 2 - Description 2')).toBeNull();
+    expect(await screen.findByText('Movie 1 - Description 1')).toBeNull();
+    expect(await screen.findByText('Movie 2 - Description 2')).toBeNull();
   });
 
   it('On Event onMovieClick when a movie is clicked, return data', async () => {
