@@ -74,7 +74,7 @@ jobs:
       run: docker build -t trungnq72-frontend-app:ci-build starter/frontend
 
     - name: Run Docker container
-      run: docker run -d --name trungnq72-frontend-container --build-arg=REACT_APP_MOVIE_API_URL=http://localhost:8081 -p 8082:8082 trungnq72-frontend-app:ci-build
+      run: docker run -d --name trungnq72-frontend-container -e REACT_APP_MOVIE_API_URL=http://localhost:8081 -p 8082:8082 trungnq72-frontend-app:ci-build
 
     - name: Test Docker container
       run: |
