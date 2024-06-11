@@ -10,10 +10,12 @@ describe('On click Detail', () => {
   it('Get data of the movie, return data', async () => {
     const mockMovieId = 1;
     const mockMovieData = {
-      movie: {
-        id: 1,
-        title: 'Movie 1',
-        description: 'Description 1',
+      data: {
+        movie: {
+          id: 1,
+          title: 'Movie 1',
+          description: 'Description 1',
+        },
       },
     };
 
