@@ -43,7 +43,7 @@ jobs:
         run: pip install -r starter/backend/requirements.txt
 
       - name: Run tests
-        run: pytest starter/backend/tests
+        run: pytest starter/backend
 
   build:
     runs-on: ubuntu-latest
