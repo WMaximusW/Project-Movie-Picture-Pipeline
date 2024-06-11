@@ -4,16 +4,24 @@ import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect'; // for better assertions
 import App from '../../App';
 
-// Mock the MovieList and MovieDetails components
-jest.mock('../MovieList.js', () => ({ onMovieClick }) => (
-  <div data-testid="movie-list" onClick={() => onMovieClick({ title: 'Test Movie' })}>
-    Movie List
-  </div>
-));
+// Mock the MovieList and MovieDetail components with display names
+jest.mock('../MovieList.js', () => {
+  const MockMovieList = ({ onMovieClick }) => (
+    <div data-testid="movie-list" onClick={() => onMovieClick({ id: 1, title: 'Test Movie' })}>
+      Movie List
+    </div>
+  );
+  MockMovieList.displayName = 'MockMovieList';
+  return MockMovieList;
+});
 
-jest.mock('../MovieDetail.js', () => ({ movie }) => (
-  <div data-testid="movie-details"> Movie Details: {movie.title} </div>
-));
+jest.mock('../MovieDetail.js', () => {
+  const MockMovieDetail = ({ movie }) => (
+    <div data-testid="movie-details">Movie Details: {movie.title}</div>
+  );
+  MockMovieDetail.displayName = 'MockMovieDetail';
+  return MockMovieDetail;
+});
 
 describe('App component', () => {
   it('renders Movie List without selected movie details', () => {
