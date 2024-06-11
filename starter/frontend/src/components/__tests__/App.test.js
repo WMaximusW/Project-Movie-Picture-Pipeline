@@ -24,10 +24,10 @@ jest.mock('../MovieDetail.js', () => {
 describe('App component', () => {
   it('renders Movie List without selected movie details', async () => {
     // Render the App component
-    const { findByText, queryByTestId } = render(<App />);
+    const { getAllByText, queryByTestId } = render(<App />);
 
     // Assert that Movie List is rendered
-    expect(await findByText('Movie List')).toBeInTheDocument();
+    expect(getAllByText('Movie List')[1]).toBeInTheDocument();
 
     // Assert that Movie Details is not rendered initially
     expect(queryByTestId('movie-details')).toBeNull();
