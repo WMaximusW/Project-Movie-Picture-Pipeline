@@ -11,9 +11,9 @@ const mockMovieData = {
   data: {
     movies: [
       { id: 1, title: 'Movie 1', description: 'Description 1' },
-      { id: 2, title: 'Movie 2', description: 'Description 2' }
-    ]
-  }
+      { id: 2, title: 'Movie 2', description: 'Description 2' },
+    ],
+  },
 };
 
 describe('Initial', () => {
@@ -25,9 +25,9 @@ describe('Initial', () => {
       render(<MovieList />);
     });
 
-    await waitFor(() => {
-      expect(screen.getByText(/Movie 1 - Description 1/)).toBeInTheDocument();
-      expect(screen.getByText(/Movie 2 - Description 2/)).toBeInTheDocument();
+    await waitFor(async() => {
+      expect(await screen.getByText(/Movie 1 - Description 1/)).toBeInTheDocument();
+      expect(await screen.getByText(/Movie 2 - Description 2/)).toBeInTheDocument();
     });
   });
 
@@ -41,8 +41,8 @@ describe('Initial', () => {
       render(<MovieList onMovieClick={mockOnMovieClick} />);
     });
 
-    await waitFor(() => {
-      const movie1 = screen.getByText(/Movie 1 - Description 1/);
+    await waitFor(async () => {
+      const movie1 = await screen.getByText(/Movie 1 - Description 1/);
       expect(movie1).toBeInTheDocument();
       fireEvent.click(movie1);
     });
