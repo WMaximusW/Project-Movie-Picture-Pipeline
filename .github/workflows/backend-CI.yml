@@ -25,7 +25,7 @@ jobs:
         run: pip install -r starter/backend/requirements.txt
 
       - name: Run linter
-        run: flake8 backend
+        run: flake8 starter/backend
 
   test:
     runs-on: ubuntu-latest

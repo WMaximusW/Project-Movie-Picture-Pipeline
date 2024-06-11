@@ -1,2 +1,3 @@
 pipenv
 flake8
+pytest
