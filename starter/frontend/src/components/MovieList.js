@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { url_movies } from '../route';
 
 export default function MovieList({ onMovieClick }) {
   const [movies, setMovies] = useState(null);
 
   useEffect(() => {
-    axios.get(url_movies).then((response) => {
+    axios.get(`${process.env.REACT_APP_MOVIE_API_URL}/movies`).then((response) => {
       setMovies(response.data.movies);
     });
   }, null);

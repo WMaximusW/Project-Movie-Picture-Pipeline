@@ -12,9 +12,7 @@ jest.mock('../MovieList.js', () => ({ onMovieClick }) => (
 ));
 
 jest.mock('../MovieDetail.js', () => ({ movie }) => (
-  <div data-testid="movie-details">
-    Movie Details: {movie.title}
-  </div>
+  <div data-testid="movie-details"> Movie Details: {movie.title} </div>
 ));
 
 describe('App component', () => {
