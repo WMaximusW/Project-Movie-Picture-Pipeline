@@ -23,7 +23,10 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r starter/backend/requirements.txt
-
+      
+      - name: Run flake8
+        run: flake8 --config starter/backend/.flake8
+      
       - name: Run linter
         run: flake8 starter/backend
 
