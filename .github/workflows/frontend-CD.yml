@@ -9,7 +9,7 @@ on:
       - "starter/frontend/**"
 
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -23,6 +23,13 @@ jobs:
         run: npm test
         working-directory: starter/frontend
 
+  build:
+    runs-on: ubuntu-latest
+    needs: [test]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
       - name: Build Docker image
         run: |
           docker build -t trungnq72-frontend-app:${{ github.sha }} starter/frontend
