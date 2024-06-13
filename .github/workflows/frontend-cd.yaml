@@ -15,9 +15,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: npm install
-        working-directory: starter/frontend
+      - name: Setup Node.js and Install Dependencies
+        uses: ./.github/actions/setup-node-dependencies
+        with:
+          node-version: '18'
+          working-directory: starter/frontend
 
       - name: Run tests
         run: npm test
