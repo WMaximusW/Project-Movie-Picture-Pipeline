@@ -35,6 +35,9 @@ runs:
     - name: Install dependencies
       run: npm install
       working-directory: ${{ inputs.working-directory }}
+      shell: bash
       
     - name: Set cache-hit output
       run: echo "::set-output name=cache-hit::${{ steps.cache.outputs.cache-hit }}"
+      shell: bash
+   
