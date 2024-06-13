@@ -103,6 +103,6 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
           REPO_NAME: backend
         run: |
-          aws eks update-kubeconfig --name trungnq72-project4 --region ${{ secrets.AWS_REGION }}
+          aws eks update-kubeconfig --name ${{ secrets.EKS_CLUSTER_NAME }} --region ${{ secrets.AWS_REGION }}
           kustomize edit set image backend=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/$REPO_NAME:$IMAGE_TAG
           kustomize build | kubectl apply -f -
