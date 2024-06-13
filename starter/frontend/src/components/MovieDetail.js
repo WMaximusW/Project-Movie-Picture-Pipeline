@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function MovieDetail({ movieId }) {
+export default function MovieDetail({ movie }) {
   const [detail, setDetail] = useState(null);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_MOVIE_API_URL}/movies/${movieId}`).then((response) => {
+    axios.get(`${process.env.REACT_APP_MOVIE_API_URL}/movies/${movie.id}`).then((response) => {
       setDetail(response.data);
     });
   }, null);

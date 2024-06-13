@@ -8,7 +8,6 @@ jest.mock('axios');
 
 describe('On click Detail', () => {
   it('Get data of the movie, return data', async () => {
-    const mockMovieId = 1;
     const mockMovieData = {
       data: {
         movie: {
@@ -21,7 +20,7 @@ describe('On click Detail', () => {
 
     axios.get.mockImplementation(() => Promise.resolve(mockMovieData));
 
-    render(<MovieDetail movieId={mockMovieId} />);
+    render(<MovieDetail movie={mockMovieData.data.movie} />);
 
     // Wait for the movie details to be loaded
     await waitFor(() => {
