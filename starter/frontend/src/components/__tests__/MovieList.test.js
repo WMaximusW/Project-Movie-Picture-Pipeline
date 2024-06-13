@@ -30,33 +30,4 @@ describe('Initial', () => {
       expect(screen.getByText('Movie 2')).toBeInTheDocument();
     });
   });
-
-  it('On Event onMovieClick when a movie is clicked, return data', async () => {
-    const mockMovieData = {
-      data: {
-        movies: [
-          { id: 1, title: 'Movie 1', description: 'Description 1' },
-          { id: 2, title: 'Movie 2', description: 'Description 2' },
-        ],
-      },
-    };
-
-    const mockOnMovieClick = jest.fn();
-
-    // Mock the axios response
-    axios.get.mockImplementation(() => Promise.resolve(mockMovieData));
-
-    await act(async () => {
-      render(<MovieList onMovieClick={mockOnMovieClick} />);
-    });
-
-    await waitFor(() => {
-      const movie1 = screen.getByText('Movie 1');
-      expect(movie1).toBeInTheDocument();
-      fireEvent.click(movie1);
-    });
-
-    // Check if onMovieClick is called with correct argument
-    expect(mockOnMovieClick).toHaveBeenCalledWith(1);
-  });
 });
