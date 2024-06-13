@@ -25,7 +25,7 @@ runs:
         path: ~/.cache/pip
         key: ${{ runner.os }}-pip-${{ inputs.requirements-file }}
         restore-keys: |
-          ${{ runner.os }}-pip
+          ${{ runner.os }}-pip-
 
     - name: Install dependencies
       run: pip install -r ${{ inputs.requirements-file }}

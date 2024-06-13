@@ -21,7 +21,7 @@ runs:
         path: ${{ inputs.working-directory }}/node_modules
         key: ${{ runner.os }}-node-${{ inputs.node-version }}-${{ inputs.working-directory }}/package-lock.json
         restore-keys: |
-          ${{ runner.os }}-node-${{ inputs.node-version }}
+          ${{ runner.os }}-node-${{ inputs.node-version }}-
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
