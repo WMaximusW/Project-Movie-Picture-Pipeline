@@ -16,13 +16,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v3
+      - name: Setup Python and Install Dependencies
+        uses: ./.github/actions/setup-python-dependencies
         with:
           python-version: "3.10"
-
-      - name: Install dependencies
-        run: pip install -r starter/backend/requirements.txt
+          requirements-file: "starter/backend/requirements.txt"
       
       - name: Run linter
         run: flake8 --config starter/backend/.flake8 starter/backend
@@ -34,13 +32,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v3
+      - name: Setup Python and Install Dependencies
+        uses: ./.github/actions/setup-python-dependencies
         with:
           python-version: "3.10"
-
-      - name: Install dependencies
-        run: pip install -r starter/backend/requirements.txt
+          requirements-file: "starter/backend/requirements.txt"
 
       - name: Run tests
         run: pytest starter/backend

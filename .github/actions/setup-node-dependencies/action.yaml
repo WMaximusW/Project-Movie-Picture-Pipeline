@@ -10,10 +10,6 @@ inputs:
     description: "The working directory"
     required: true
 
-outputs:
-  cache-hit:
-    description: "Cached"
-
 runs:
   using: "composite"
   
@@ -36,8 +32,3 @@ runs:
       run: npm install
       working-directory: ${{ inputs.working-directory }}
       shell: bash
-      
-    - name: Set cache-hit output
-      run: echo "::set-output name=cache-hit::${{ steps.cache.outputs.cache-hit }}"
-      shell: bash
-   

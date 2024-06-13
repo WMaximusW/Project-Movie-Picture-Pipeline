@@ -1,0 +1,32 @@
+name: "Setup Python and Install Dependencies"
+
+description: "Sets up Python and installs dependencies"
+
+inputs:
+  python-version:
+    description: "The Python version to use"
+    required: true
+  requirements-file:
+    description: "The path to the requirements file"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Cache Python dependencies
+      id: cache-python-deps
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ inputs.requirements-file }}
+        restore-keys: |
+          ${{ runner.os }}-pip
+
+    - name: Install dependencies
+      run: pip install -r ${{ inputs.requirements-file }}
+      shell: bash
