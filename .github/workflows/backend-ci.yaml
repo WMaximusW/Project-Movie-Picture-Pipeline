@@ -49,5 +49,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Build Docker image
-        run: docker build -t trungnq72-backend-app:ci-build starter/backend
+      - name: Setup Docker Cache
+        uses: ./.github/actions/setup-docker-cache
+        with:
+          dockerfile: "starter/backend/Dockerfile"
+          image-tag: "trungnq72-backend-app:ci-build"
+      
+      - name: Run Docker container
+        run: docker run -d --name trungnq72-backend-container -p 8081:8081 trungnq72-backend-app:ci-build
