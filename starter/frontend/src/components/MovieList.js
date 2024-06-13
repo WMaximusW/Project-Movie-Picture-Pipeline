@@ -15,7 +15,7 @@ export default function MovieList({ onMovieClick }) {
       <ul>
         {responseData && responseData.movies && responseData.movies.length > 0 ? (
           responseData.movies.map((item) => (
-            <li className="movieItem" key={item.id} onClick={() => onMovieClick(item.id)}>
+            <li className="movieItem" key={item.id} onClick={() => onMovieClick(item)}>
               <a href="javascript:void(0)">{item.title}</a> - <span>{item.description}</span>
             </li>
           ))
