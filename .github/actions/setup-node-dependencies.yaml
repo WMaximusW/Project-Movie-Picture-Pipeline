@@ -1,0 +1,40 @@
+name: "Setup Node.js and Install Dependencies"
+
+description: "Sets up Node.js and installs dependencies"
+
+inputs:
+  node-version:
+    description: "The Node.js version to use"
+    required: true
+  working-directory:
+    description: "The working directory"
+    required: true
+
+outputs:
+  cache-hit:
+    description: "Cached"
+
+runs:
+  using: "composite"
+  
+  steps:
+    - name: Setting cache
+      id: node-cache
+      uses: actions/cache@v3
+      with:
+        path: ${{ inputs.working-directory }}/node_modules
+        key: ${{ runner.os }}-node-${{ inputs.node-version }}-${{ inputs.working-directory }}/package-lock.json
+        restore-keys: |
+          ${{ runner.os }}-node-${{ inputs.node-version }}
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node-version }}
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: ${{ inputs.working-directory }}
+      
+    - name: Set cache-hit output
+      run: echo "::set-output name=cache-hit::${{ steps.cache.outputs.cache-hit }}"
