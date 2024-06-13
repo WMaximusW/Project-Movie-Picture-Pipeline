@@ -53,7 +53,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build --build-arg=REACT_APP_MOVIE_API_URL=${{ env.BACKEND_URL }} -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/frontend:${{ github.sha }} starter/frontend/
+          docker build --build-arg=REACT_APP_MOVIE_API_URL=http://${{ env.BACKEND_URL }} -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/frontend:${{ github.sha }} starter/frontend/
 
       - name: Push Docker image to Amazon ECR
         run: |
