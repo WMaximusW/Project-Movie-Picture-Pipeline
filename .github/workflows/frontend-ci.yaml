@@ -67,15 +67,10 @@ jobs:
     - name: Run Docker container
       run: docker run -d --name trungnq72-frontend-container -e REACT_APP_MOVIE_API_URL=http://localhost:8081 -p 8082:8082 trungnq72-frontend-app:ci-build
 
-    - name: Comment on the PR
-      uses: actions/github-script@v6
+    - name: Post test results as PR comment
+      uses: peter-evans/create-or-update-comment@v2
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          const pullRequestNumber = context.payload.pull_request.number;
-          const comment = 'FE - The build was successful!';
-          await github.rest.issues.createComment({
-            ...context.repo,
-            issue_number: pullRequestNumber,
-            body: comment,
-          });
+        token: ${{ secrets.GITHUB_TOKEN }}
+        repository: ${{ github.repository }}
+        issue-number: ${{ github.event.pull_request.number }}
+        body: 'FE - The build was successful!'
