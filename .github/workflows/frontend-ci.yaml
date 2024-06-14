@@ -61,11 +61,8 @@ jobs:
       run: npm run build
       working-directory: starter/frontend
 
-    - name: Setup Docker Cache
-      uses: ./.github/actions/setup-docker-caching
-      with:
-        dockerfile: "starter/frontend/Dockerfile"
-        image-tag: "trungnq72-frontend-app:ci-build"
+    - name: Build Docker image
+      run: docker build -t trungnq72-frontend-app:ci-build starter/frontend
 
     - name: Run Docker container
       run: docker run -d --name trungnq72-frontend-container -e REACT_APP_MOVIE_API_URL=http://localhost:8081 -p 8082:8082 trungnq72-frontend-app:ci-build
