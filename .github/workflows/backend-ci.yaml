@@ -50,7 +50,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup Docker Cache
-        uses: ./.github/actions/setup-docker-cache
+        uses: ./.github/actions/setup-docker-caching
         with:
           dockerfile: "starter/backend/Dockerfile"
           image-tag: "trungnq72-backend-app:ci-build"
