@@ -5,10 +5,8 @@ ENV REACT_APP_MOVIE_API_URL=${REACT_APP_MOVIE_API_URL}
 
 WORKDIR /app
 
-# Copy dependdency files
-COPY package*.json ./
-# Copy package-lock.json to the container
-COPY package-lock.json ./
+# Copy both package.json and package-lock.json to the container
+COPY package.json package-lock.json ./
 
 # Install packages
 RUN npm ci
