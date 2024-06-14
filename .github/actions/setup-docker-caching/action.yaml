@@ -30,6 +30,7 @@ runs:
 
     - name: Create Docker Buildx builder
       run: docker buildx create --use
+      shell: bash
 
     - name: Create cache directories
       run: |
